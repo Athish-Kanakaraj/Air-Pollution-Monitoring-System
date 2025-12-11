@@ -36,13 +36,13 @@ Below are the wiring details for all sensors, modules, and components used in th
 ## 🌫 Dust Sensor (GP2Y1010 or Similar)
 | Dust Sensor Pin | Arduino UNO Pin |
 |------------------|-----------------|
-| LED Control      | D3 (PWM Pulse)  |
+| LED Control      | D3 (Pulsed Output) |
 | AO               | A2              |
 | VCC              | 5V              |
 | GND              | GND             |
 
 ⚠ **Note:**  
-The LED pin is pulsed LOW and HIGH for dust sampling timing.
+LED pin is pulsed LOW and HIGH as required by the dust sensor timing protocol.
 
 ---
 
@@ -51,20 +51,27 @@ The LED pin is pulsed LOW and HIGH for dust sampling timing.
 |------------|------------------|
 | TX →       | D10 (SoftwareSerial RX) |
 | RX ←       | D11 (SoftwareSerial TX, use 3.3V level shifting) |
-| VCC        | 3.3V (External Regulator Recommended) |
+| VCC        | 3.3V (Requires stable regulator) |
 | CH_PD / EN | 3.3V |
 | GND        | GND |
 
 ⚠ **Important:**  
-- Do **NOT** power ESP-01 directly from Arduino 3.3V pin if unstable.  
-- Use a proper **3.3V 300–500mA** regulator for safe operation.
+- Do **NOT** power ESP-01 directly from Arduino's weak 3.3V pin.  
+- Use a dedicated **3.3V 300–500mA** regulator for safe operation.
 
 ---
 
-## 🌀 Fan / Ventilation Control
+## 🌀 Fan / Exhaust Control (Relay)
 | Function | Arduino UNO Pin | Relay Input |
 |----------|------------------|-------------|
 | Fan      | D4               | IN1         |
+
+---
+
+## 💧 Mist Sprayer / Humidity Control (Relay)
+| Function  | Arduino UNO Pin | Relay Input |
+|-----------|------------------|-------------|
+| Mist Unit | D5               | IN2         |
 
 ### Relay Power:
 - VCC → 5V  
@@ -76,7 +83,8 @@ The LED pin is pulsed LOW and HIGH for dust sampling timing.
 ---
 
 ## 🧷 Power Notes
-- Arduino UNO powered via USB or 5V adapter  
-- ESP-01 requires **3.3V stable supply**  
-- All sensors should share a **common ground**  
-- MQ sensors require **warming time** for accurate readings  
+- Arduino UNO powered via USB or regulated 5V supply  
+- ESP-01 must have a **stable external 3.3V regulator**  
+- MQ-series sensors require **2–5 minutes warm-up** for stable readings  
+- All modules must share a **common ground**
+
