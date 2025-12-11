@@ -61,7 +61,7 @@ The LED pin is pulsed LOW and HIGH for dust sampling timing.
 
 ---
 
-## 🌀 Fan / Ventilation Control (Optional Relay)
+## 🌀 Fan / Ventilation Control
 | Function | Arduino UNO Pin | Relay Input |
 |----------|------------------|-------------|
 | Fan      | D4               | IN1         |
